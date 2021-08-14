@@ -1,4 +1,9 @@
-
+.circleci/
+.editorconfig
+.github/
+.mvn/
+.flattened-pom.xml
+.settings.xml
 ### Java template
 # Compiled class file
 *.class
