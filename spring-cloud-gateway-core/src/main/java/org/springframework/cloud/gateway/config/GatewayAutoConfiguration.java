@@ -200,12 +200,10 @@ public class GatewayAutoConfiguration {
 
 	/**
 	 * RouteDefinitionLocator 路由定义Bean
-	 *
 	 * @param routeDefinitionLocators 所有route的定义的 bean 合集
-	 *        InMemoryRouteDefinitionRepository 此bean可以实现route动态增删
-	 *        DiscoveryClientRouteDefinitionLocator 服务发现路由自动注册发布
-	 *        PropertiesRouteDefinitionLocator
-	 *        CachingRouteDefinitionLocator
+	 * InMemoryRouteDefinitionRepository 此bean可以实现route动态增删
+	 * DiscoveryClientRouteDefinitionLocator 服务发现路由自动注册发布 PropertiesRouteDefinitionLocator
+	 * CachingRouteDefinitionLocator
 	 * @return 返回空值
 	 */
 	@Bean
@@ -226,12 +224,10 @@ public class GatewayAutoConfiguration {
 	/**
 	 * 路由定义转换路由实现
 	 * <p>
-	 * 注册 Flux<Route> 合集，
-	 * RoutePredicateHandlerMapping   用于匹配路由
-	 *
-	 * @param properties             网关路由配置数据
-	 * @param gatewayFilters         所有 GatewayFilterFactory bean 集合
-	 * @param predicates             所有 RoutePredicateFactory bean 集合
+	 * 注册 Flux<Route> 合集， RoutePredicateHandlerMapping 用于匹配路由
+	 * @param properties 网关路由配置数据
+	 * @param gatewayFilters 所有 GatewayFilterFactory bean 集合
+	 * @param predicates 所有 RoutePredicateFactory bean 集合
 	 * @param routeDefinitionLocator 表达式配置网关对应的数据
 	 * @param configurationService
 	 * @return Route路由合集

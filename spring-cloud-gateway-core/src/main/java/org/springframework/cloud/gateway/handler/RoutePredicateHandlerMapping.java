@@ -130,7 +130,6 @@ public class RoutePredicateHandlerMapping extends AbstractHandlerMapping {
 	 * 从 routeLocator 中匹配当前的路由信息
 	 *
 	 * 遍历 routeLocator , 校验 route的 predicate 当前请求是否满足断言
-	 *
 	 * @param exchange 请求
 	 * @return
 	 */

@@ -57,7 +57,6 @@ public class FilteringWebHandler implements WebHandler {
 
 	/**
 	 * 加载全部的过滤器并转换为 GatewayFilter
-	 *
 	 * @param filters 全局过滤器
 	 * @return List<GatewayFilter>
 	 */

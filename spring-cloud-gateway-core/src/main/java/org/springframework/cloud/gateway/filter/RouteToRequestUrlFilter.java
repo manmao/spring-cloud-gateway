@@ -85,7 +85,7 @@ public class RouteToRequestUrlFilter implements GlobalFilter, Ordered {
 			// underscore)
 			throw new IllegalStateException("Invalid host: " + routeUri.toString());
 		}
-		//  lb://ipaas-config-api-v1 或者 http://www.baidu.com 等
+		// lb://ipaas-config-api-v1 或者 http://www.baidu.com 等
 		URI mergedUrl = UriComponentsBuilder.fromUri(uri)
 				// .uri(routeUri)
 				.scheme(routeUri.getScheme()).host(routeUri.getHost())
