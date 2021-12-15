@@ -74,11 +74,13 @@ public class ReactiveLoadBalancerClientFilter implements GlobalFilter, Ordered {
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		URI url = exchange.getAttribute(GATEWAY_REQUEST_URL_ATTR);
 		String schemePrefix = exchange.getAttribute(GATEWAY_SCHEME_PREFIX_ATTR);
+		// 1.如果请求url为空，或者不是lb开头，那直接跳过处理
 		if (url == null
 				|| (!"lb".equals(url.getScheme()) && !"lb".equals(schemePrefix))) {
 			return chain.filter(exchange);
 		}
 		// preserve the original url
+		// 2.添加原始请求url到exchange里的GATEWAY_ORIGINAL_REQUEST_URL_ATTR（LinkedHashSet）
 		addOriginalRequestUrl(exchange, url);
 
 		if (log.isTraceEnabled()) {
@@ -102,6 +104,7 @@ public class ReactiveLoadBalancerClientFilter implements GlobalFilter, Ordered {
 				overrideScheme = url.getScheme();
 			}
 
+			// 构造一个委托的负载均衡器
 			DelegatingServiceInstance serviceInstance = new DelegatingServiceInstance(
 					response.getServer(), overrideScheme);
 
@@ -126,6 +129,9 @@ public class ReactiveLoadBalancerClientFilter implements GlobalFilter, Ordered {
 		if (loadBalancer == null) {
 			throw new NotFoundException("No loadbalancer available for " + uri.getHost());
 		}
+		// RoundRobinLoadBalancer.java
+		// -> ServiceInstanceListSupplier -> DiscoveryClientServiceInstanceListSupplier
+		// -> DiscoveryClient.java  -> NacosDiscoveryClient.java/EurekaDiscoveryClient.java
 		return loadBalancer.choose(createRequest());
 	}
 
